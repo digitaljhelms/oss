@@ -104,14 +104,6 @@
         });
       });
 
-      $.getJSON("https://api.github.com/orgs/twitter/members?callback=?", function (result) {
-        var members = result.data;
-
-        $(function () {
-          $("#num-members").text(members.length);
-        });
-      });
-
       function randomItem(array) {
         return array[Math.floor(Math.random() * array.length)];
       }
@@ -214,8 +206,6 @@
         <div id="statistics" class="grid-1 alpha header">
           <h1>Statistics</h1>
           <p>
-            <br>
-            <a href="https://github.com/twitter"><span id="num-members">&nbsp;</span> members</a>
             <a href="https://github.com/digitaljhelms/repositories"><span id="num-repos">&nbsp;</span> public repos</a>
           </p>
           <p class="credits">This page generated with <a href="https://github.com/twitter/twitter.github.com">code from Twitter</a>.</p>
