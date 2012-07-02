@@ -16,8 +16,8 @@ h1 {
 }
 
 h2 {
-  font-size: 20px;
   font-weight: normal;
+  font-size: 18px;
   color: #0084b4;
 }
 
@@ -52,17 +52,39 @@ a:hover {
 }
 
 #main h1 {
-  margin: 30px 0;
+  margin: 25px 15px 0;
+  font-size: 25px;
 }
 
-#main h1, #main p {
-  margin-left: 15px;
-  margin-right: 15px;
+#main h3 {
+  margin: 0 15px 80px;
+  font-size: 16px;
+}
+
+#main h3 a.fluid {
+  position: relative;
+  color: #2a2e2e;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-right: 15px;
+}
+
+#main h3 a.fluid:hover {
+  text-decoration: none;
+}
+
+#main h3 a.fluid .logo {
+  position: absolute;
+  background: url("http://www.fluid.com/img/sprite.png") no-repeat -227px -243px;
+  width: 15px;
+  height: 15px;
+  text-indent: -99999px;
+  top: 0;
 }
 
 #main p {
+  margin: 10px;
   font-size: 11px;
-  line-height: 2;
 }
 
 #logo {
