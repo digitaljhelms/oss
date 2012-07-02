@@ -109,6 +109,57 @@
         });
       });
 
+      // Put custom gist languages in this object, keyed by gist id.
+      var gistLangs = {
+      };
+
+      function gistLang(gist) {
+        var lang;
+        $.each(gist.files, function(i, file) {
+          if (!lang) lang = file.language;
+        });
+        if (!lang) lang = '';
+        return gistLangs[gist.id] || lang;
+      }
+
+      function gistName(gist) {
+        var name = gist.description;
+        if (name.length > 16) { return name.slice(0,16) + "..."; } else { return name; }
+      }
+
+      function addGist(gist) {
+        var lang = gistLang(gist);
+        var $item = $("<li>").addClass("gist grid-1 " + lang.toLowerCase());
+        var $link = $("<a>").attr("href", repoUrl(gist)).appendTo($item);
+        $link.append($("<h2>").text(gistName(gist)));
+        $link.append($("<h3>").text(lang));
+        $link.append($("<p>").text(gist.description));
+        $item.appendTo("#gists");
+      }
+
+      $.getJSON("https://api.github.com/users/digitaljhelms/gists?callback=?", function (result) {
+        var gists = result.data;
+
+        $(function () {
+          $("#num-gists").text(gists.length);
+
+          $.each(gists, function (i, gist) {
+            // Convert created_at and updated_at to Date.
+            gist.created_at = new Date(gist.created_at);
+            gist.updated_at = new Date(gist.updated_at);
+
+            addGist(gist);
+          });
+
+          // Sort by most-recently added.
+          gists.sort(function (a, b) {
+            if (a.created_at < b.created_at) return 1;
+            if (b.created_at < a.created_at) return -1;
+            return 0;
+          });
+        });
+      });
+
     })(jQuery);
     </script>
   </head>
@@ -136,6 +187,8 @@
           <h1>Statistics</h1>
           <p>
             <a href="https://github.com/digitaljhelms/repositories"><span id="num-repos">&nbsp;</span> public repos</a>
+            <br>
+            <a href="https://gist.github.com/digitaljhelms"><span id="num-gists">&nbsp;</span> public gists</a>
           </p>
           <p class="credits">This page generated with <a href="https://github.com/twitter/twitter.github.com">code from Twitter</a>.</p>
         </div>
@@ -147,6 +200,7 @@
       </div>
 
       <ol id="repos"></ol>
+      <ol id="gists"></ol>
     </div>
   </body>
 </html>
