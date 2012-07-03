@@ -11,6 +11,8 @@
     <script type="text/javascript" src="assets/strftime.js"></script>
     <script type="text/javascript">
     (function ($, undefined) {
+      var baseURI = "https://api.github.com",
+          userURI = "/users/digitaljhelms";
 
       // Put custom repo URL's in this object, keyed by repo name.
       var repoUrls = {
@@ -64,7 +66,7 @@
         $item.appendTo("#repos");
       }
 
-      $.getJSON("https://api.github.com/users/digitaljhelms/repos?callback=?", function (result) {
+      $.getJSON(baseURI + userURI + "/repos?callback=?", function (result) {
         var repos = result.data;
 
         $(function () {
@@ -140,7 +142,7 @@
         $item.appendTo("#gists");
       }
 
-      $.getJSON("https://api.github.com/users/digitaljhelms/gists?callback=?", function (result) {
+      $.getJSON(baseURI + userURI + "/gists?callback=?", function (result) {
         var gists = result.data;
 
         $(function () {
