@@ -186,6 +186,7 @@ li.gist h2, li.gist h3, li.gist p {
 li.repo h2, li.gist h2 {
   margin-bottom: 2px;
   max-width: 170px;
+  max-height: 25px;
   overflow: hidden;
 }
 
