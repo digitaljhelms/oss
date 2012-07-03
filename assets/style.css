@@ -209,7 +209,7 @@ li.repo h3 {
 }
 
 .repo.javascript:after {
-  border-right-color: #333;
+  border-right-color: #ebd80f;
 }
 
 .repo.scala:after {
@@ -225,7 +225,7 @@ li.repo h3 {
 }
 
 .repo.python:after {
-  border-right-color: #6aad2d;
+  border-right-color: #2b5a95;
 }
 
 h2.fork {
