@@ -214,23 +214,28 @@ li.repo h3, li.gist h3 {
   border-right-color: #fb8200;
 }
 
-.repo.javascript:after {
+.repo.javascript:after,
+.gist.javascript:after {
   border-right-color: #ebd80f;
 }
 
-.repo.scala:after {
+.repo.scala:after,
+.gist.scala:after {
   border-right-color: #7ac9de;
 }
 
-.repo.ruby:after {
+.repo.ruby:after,
+.gist.ruby:after {
   border-right-color: #cc1100;
 }
 
-.repo.java:after {
+.repo.java:after,
+.gist.java:after {
   border-right-color: #cc8300;
 }
 
-.repo.python:after {
+.repo.python:after,
+.gist.python:after {
   border-right-color: #2b5a95;
 }
 
