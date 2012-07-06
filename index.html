@@ -136,7 +136,11 @@
         var lang = gistLang(gist);
         var $item = $("<li>").addClass("gist grid-1 " + lang.toLowerCase());
         var $link = $("<a>").attr("href", repoUrl(gist)).appendTo($item);
-        $link.append($("<h2>").text(gistName(gist)));
+        if (gist.fork_of) {
+          $link.append($('<h2 class="fork">').text(gistName(gist)));
+        } else {
+          $link.append($("<h2>").text(gistName(gist)));
+        }
         $link.append($("<h3>").text(lang));
         $link.append($("<p>").text(gist.description));
         $item.appendTo("#gists");
