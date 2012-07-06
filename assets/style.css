@@ -169,6 +169,11 @@ li.repo, li.gist {
   height: 190px;
 }
 
+li.gist {
+  background: #efefef;
+  background: rgba(239, 239, 239, 0.7);
+}
+
 li.repo > a, li.gist > a {
   display: block;
   width: 100%;
