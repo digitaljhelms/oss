@@ -240,6 +240,25 @@ li.repo h3, li.gist h3 {
 }
 
 h2.fork {
+.repo.perl:after,
+.gist.perl:after {
+  border-right-color: #35497d;
+}
+
+.repo.html:after,
+.gist.html:after {
+  border-right-color: #d7370f;
+}
+
+.repo.css:after,
+.gist.css:after {
+  border-right-color: #a3c0db;
+}
+
+.gist.markdown:after {
+  border-right-color: #394048;
+}
+
   background: url(fork.png) no-repeat center left;
   padding: 0 0 0 20px;
 }
