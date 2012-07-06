@@ -143,24 +143,35 @@
       }
 
       $.getJSON(baseURI + userURI + "/gists?callback=?", function (result) {
-        var gists = result.data;
+        var gistlist = result.data;
+        var gists = [];
+
+        var complete = function (index) {
+          if (gists.length == gistlist.length) {
+            $("#num-gists").text(gists.length);
+
+            // Sort by most-recently added.
+            gists.sort(function (a, b) {
+              if (a.created_at < b.created_at) return 1;
+              if (b.created_at < a.created_at) return -1;
+              return 0;
+            });
+
+            $.each(gists, function (i, gist) {
+              addGist(gist);
+            });
+          }
+        };
 
         $(function () {
-          $("#num-gists").text(gists.length);
-
-          $.each(gists, function (i, gist) {
-            // Convert created_at and updated_at to Date.
-            gist.created_at = new Date(gist.created_at);
-            gist.updated_at = new Date(gist.updated_at);
-
-            addGist(gist);
-          });
-
-          // Sort by most-recently added.
-          gists.sort(function (a, b) {
-            if (a.created_at < b.created_at) return 1;
-            if (b.created_at < a.created_at) return -1;
-            return 0;
+          $.each(gistlist, function (i, gist) {
+            $.getJSON(baseURI + "/gists/" + gist.id + "?callback=?", function (result) {
+              gist = $.extend(true, gist, result.data);
+              gist.created_at = new Date(gist.created_at);
+              gist.updated_at = new Date(gist.updated_at);
+              gists.push(gist);
+              complete(i);
+            });
           });
         });
       });
