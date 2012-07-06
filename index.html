@@ -133,6 +133,22 @@
           return (length && name.length > length) ? name.slice(0, length) + "..." : name;
         } else return "gist: " + gist.id;
       }
+
+      function addRecentlyAddedGist(gist) {
+        var $item = $("<li>");
+
+        var $name = $("<a>").attr("href", gist.html_url).text(gistName(gist, 'name', 50));
+        $item.append($("<span>").addClass("name").append($name));
+
+        var $time = $("<a>").attr("href", gist.html_url).text(strftime("%h %e, %Y", gist.updated_at));
+        $item.append($("<span>").addClass("time").append($time));
+
+        $item.append('<span class="bullet">&sdot;</span>');
+
+        var $forks = $("<a>").attr("href", gist.html_url).text(gist.forks.length + " forks");
+        $item.append($("<span>").addClass("forks").append($forks));
+
+        $item.appendTo("#recently-added-gists");
       }
 
       function addGist(gist) {
@@ -163,6 +179,10 @@
               if (b.created_at < a.created_at) return -1;
               return 0;
             });
+
+            $.each(gists.slice(0, 2), function (i, gist) {
+              addRecentlyAddedGist(gist);
+            })
 
             $.each(gists, function (i, gist) {
               addGist(gist);
@@ -217,8 +237,10 @@
         </div>
 
         <div id="recently-updated" class="grid-2 omega header">
-          <h1>Recently updated <a href="https://github.com/digitaljhelms/repositories">View All on GitHub</a></h1>
+          <h1>Recently updated repos <a href="https://github.com/digitaljhelms/repositories">View All on GitHub</a></h1>
           <ol id="recently-updated-repos"></ol>
+          <h1>Recently added gists <a href="https://gist.github.com/digitaljhelms">View All on GitHub</a></h1>
+          <ol id="recently-added-gists"></ol>
         </div>
       </div>
 
